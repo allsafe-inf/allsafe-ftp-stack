@@ -875,7 +875,7 @@ O passo a passo, na ordem em que é feito:
 2. `FTP_BIND_IP` com o IP **privado** dedicado e **regra no firewall** do host liberando só as origens de backup: [rede privada](#rede-privada).
 3. **Painel:** trocar a senha inicial ([Segredos](segredos.md#senha-do-painel)), reduzir `PAINEL_REDES_PERMITIDAS` à rede de administração e liberar a porta do painel no firewall só para ela. Em `PAINEL_BIND_IP=127.0.0.1` o painel só abre no próprio servidor.
 4. Rever o [bloqueio por tentativa](#bloqueio-por-tentativa) do FTP: o padrão da stack e o limite próprio dos usuários que precisam de outro. Rever também o [bloqueio por endereço](#bloqueio-por-endereco): o limite de erros, as horas em que eles se somam e os dias de bloqueio.
-5. Rever `FTP_MAX_CLIENTS` e a faixa passiva conforme o número real de equipamentos: [Perfis](perfis.md). Depois de mudar o porte, ou de atualizar uma instalação anterior à `0.18.1`, trocar a senha dos usuários que a aba Segurança lista em `Custo das senhas do FTP`: [Custo das senhas do FTP](#custo-das-senhas).
+5. Rever `FTP_MAX_CLIENTS` e a faixa passiva conforme o número real de equipamentos: [Perfis](perfis.md). Depois de mudar o porte, ou de atualizar uma instalação anterior à `0.19.1`, trocar a senha dos usuários que a aba Segurança lista em `Custo das senhas do FTP`: [Custo das senhas do FTP](#custo-das-senhas).
 6. Cópia de segurança agendada e levada para fora do servidor, e a chave que a abre guardada em um cofre, separada das cópias: [Backup e restauração](backup.md#chave).
 7. Conferir que `FTP_TLS_MODE` está em `2` ou `3`. Se um equipamento antigo não falar TLS, siga antes [FTP sem TLS](#ftp-sem-tls) e prefira dispensar só o usuário dele: [TLS por usuário](#tls-por-usuario).
 8. Avaliar `FTP_TLS_MODE=3`, que obriga a criptografia também do arquivo: [Configuração](configuracao.md#tls).
@@ -976,7 +976,7 @@ Todo o resto fica interno aos containers. O painel não publica porta: quem aten
 
 O que cada proteção significa na prática e o fluxograma da decisão: [Painel web](painel.md#protecoes).
 
-> Tudo acima foi conferido nos portões de validação das versões `0.3.0` (painel), `0.5.0` (nginx na frente), `0.12.0` (administradores), `0.13.0` (aba Arquivos), `0.14.0` (pastas), `0.15.0` (entrada do usuário do FTP), `0.16.0` (TLS por usuário), `0.17.0` (logo e ícone entregues pelo nginx), `0.18.0` (`robots.txt` e `security.txt`), `0.18.1` (sem senha, senha aleatória, exaustão e acesso direto ao cadastro), `0.19.0` (edição de usuário), `0.20.0` (renomear e apagar pelo painel), `0.21.0` (limites por usuário), `0.22.0` (bloqueio por tentativa no FTP), `0.22.1` (HTTP/2 e compressão do estilo) e `0.24.0` (TLS por usuário pelo painel), em instância de teste. O firewall do host continua sendo de quem opera o servidor.
+> Tudo acima foi conferido nos portões de validação das versões `0.3.0` (painel), `0.5.0` (nginx na frente), `0.13.0` (administradores), `0.14.0` (aba Arquivos), `0.15.0` (pastas), `0.16.0` (entrada do usuário do FTP), `0.17.0` (TLS por usuário), `0.18.0` (logo e ícone entregues pelo nginx), `0.19.0` (`robots.txt` e `security.txt`), `0.19.1` (sem senha, senha aleatória, exaustão e acesso direto ao cadastro), `0.23.0` (edição de usuário), `0.24.0` (renomear e apagar pelo painel), `0.25.0` (limites por usuário), `0.26.0` (bloqueio por tentativa no FTP), `0.26.1` (HTTP/2 e compressão do estilo) e `0.28.0` (TLS por usuário pelo painel), em instância de teste. O firewall do host continua sendo de quem opera o servidor.
 
 ---
 
@@ -1072,7 +1072,7 @@ A senha já gravada não muda de custo sozinha: o custo do porte vale quando ela
 <summary>Detalhe técnico — a conta e o que foi medido</summary>
 
 - **Conta:** `pure-pw useradd` e `pure-pw passwd` recebem `-C FTP_MAX_CLIENTS`. A memória do `argon2id` fica em `65536 / FTP_MAX_CLIENTS` KiB, e o número de passadas é escolhido pelo `pure-pw` a cada gravação, pelo tempo que o hash leva naquele momento: por isso ele varia de um usuário para outro. Na máquina de teste, a conferência ficou entre meio segundo e um segundo em todos os portes.
-- **Sem a opção**, o `pure-pw` supõe 8 sessões: 8192 KiB e cerca de 3 segundos de processador por conferência. Era assim até a `0.18.0`. Na máquina de teste, 7 senhas erradas ao mesmo tempo, de um só endereço, seguravam por cerca de 50 segundos a entrada de quem tinha a senha certa; com o custo do porte `small`, cerca de 8 segundos.
+- **Sem a opção**, o `pure-pw` supõe 8 sessões: 8192 KiB e cerca de 3 segundos de processador por conferência. Era assim até a `0.19.0`. Na máquina de teste, 7 senhas erradas ao mesmo tempo, de um só endereço, seguravam por cerca de 50 segundos a entrada de quem tinha a senha certa; com o custo do porte `small`, cerca de 8 segundos.
 - **Onde é aplicado:** no [`ftp/entrypoint.sh`](../ftp/entrypoint.sh), para o usuário inicial, e no [`ftp/usuario.sh`](../ftp/usuario.sh), para os usuários criados ou alterados pelo painel e pelo `manage-user.sh`. O serviço `painel` recebe o mesmo `FTP_MAX_CLIENTS` do serviço `ftp` e o repassa ao comando que grava a senha.
 - **Aviso do painel:** a aba Segurança lê só o parâmetro de memória de cada linha do cadastro e compara com o do porte, `65536 / FTP_MAX_CLIENTS` KiB, com o mínimo de 8; o hash não sai do arquivo nem aparece na tela.
 
@@ -1156,7 +1156,7 @@ Onde cada ponto é explicado: [FTP sem TLS](#ftp-sem-tls), [Proteções do paine
 <details>
 <summary>Detalhe técnico — o que foi medido e o que fica fora das RFCs</summary>
 
-Medido em 2026-10-05, em instância de teste, na versão `0.18.4`; os métodos, na `0.18.5`:
+Medido em 2026-10-05, em instância de teste, na versão `0.20.1`; os métodos, na `0.20.2`:
 
 - **`FEAT` do FTP, depois do `AUTH TLS`:** `UTF8`, `EPRT`, `IDLE`, `MDTM`, `SIZE`, `MFMT`, `REST STREAM`, `MLST`, `MLSD`, `PRET`, `AUTH TLS`, `PBSZ`, `PROT`, `TVFS`, `ESTA`, `PASV` e `EPSV`. A saudação traz `[privsep] [TLS]` e `No anonymous login`.
 - **Versões de TLS:** `openssl s_client` com TLS 1.0 e com TLS 1.1 não fecha a conexão, no FTP nem no painel. Com TLS 1.2, o painel fechou com `ECDHE-ECDSA-AES256-GCM-SHA384` e o FTP com `ECDHE-RSA-CHACHA20-POLY1305`; com TLS 1.3, os dois com `TLS_AES_256_GCM_SHA384`.

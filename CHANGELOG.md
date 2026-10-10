@@ -2,13 +2,15 @@
 
 Histórico de mudanças por versão. A versão segue o formato `MAJOR.MINOR.PATCH` e fica registrada em [`VERSION`](VERSION).
 
+Em 2026-10-10 as versões foram renumeradas: cada versão passou a levar no máximo duas correções, e a terceira virou a versão seguinte. O conteúdo de cada uma é o mesmo; a [tabela de correspondência](#renumeracao) mostra o número de antes e o de agora.
+
 ↩ [README do projeto](README.md)
 
 ## [Não lançado]
 
 Nada ainda.
 
-## [0.26.0] - 2026-10-10
+## [0.30.0] - 2026-10-10
 
 O painel foi redesenhado: menu na lateral, gráficos na Visão geral, ícones desenhados no lugar dos emojis, paleta medida nos dois temas e uma tela de entrada nova. Quem quiser pode publicar só o painel por proxy ou túnel, sem expor o FTP.
 
@@ -70,7 +72,7 @@ O painel foi redesenhado: menu na lateral, gráficos na Visão geral, ícones de
 - **Caso de teste funcional 28**: a conferência do menu do usuário do FTP conta só os links, e não o endereço interno do ícone.
 - **Casos de teste de segurança 45, 93, 94 e 96**: passam a conferir que a tela de entrada não diz como a instalação foi publicada e que o sinal do menu aparece só com a instalação publicada e o aviso ligado.
 
-## [0.25.2] - 2026-10-09
+## [0.29.2] - 2026-10-09
 
 A lista de usuários e a Visão geral deixam de comparar a pasta de cada usuário com a de todos os outros, o que pesava em instalação com centenas de usuários.
 
@@ -83,7 +85,7 @@ A lista de usuários e a Visão geral deixam de comparar a pasta de cada usuári
 
 - **Caso de teste** `Pasta dividida em cadastro grande` (funcional 54): um cadastro de 2003 usuários, montado em memória dentro do container do painel, com a resposta nova comparada com a conferência de todos contra todos, usuário por usuário e pasta por pasta.
 
-## [0.25.1] - 2026-10-09
+## [0.29.1] - 2026-10-09
 
 As marcas de estado das tabelas e a impressão digital dos certificados deixam de ser o menor texto do painel.
 
@@ -96,7 +98,7 @@ As marcas de estado das tabelas e a impressão digital dos certificados deixam d
 
 - **Fotos da aplicação refeitas** nesta versão, com as marcas no tamanho novo.
 
-## [0.25.0] - 2026-10-09
+## [0.29.0] - 2026-10-09
 
 A cópia de segurança passa a sair cifrada: quem pegar o arquivo não lê nada dele sem a chave privada, que fica em `.secrets/` e deve ser guardada também fora do servidor.
 
@@ -109,7 +111,7 @@ A cópia de segurança passa a sair cifrada: quem pegar o arquivo não lê nada 
 
 ### Alterado
 
-- **Cópia antiga, sem cifra, continua restaurando**, com o aviso `esta cópia não é cifrada`, e o `--listar` a marca com `(sem cifra: feita antes da 0.25.0)`.
+- **Cópia antiga, sem cifra, continua restaurando**, com o aviso `esta cópia não é cifrada`, e o `--listar` a marca com `(sem cifra: feita antes da 0.29.0)`.
 - **Saída do `backup.sh`**: a linha `Cópia gravada` mostra o tamanho e `cifrada`, sem a contagem de itens, e uma linha nova lembra de guardar a chave privada fora do servidor. A contagem de itens segue na saída do `restaurar.sh`.
 - **O `tar` deixa de ser exigido no host pelo `backup.sh`**: o empacotamento já era feito no container.
 - **Imagem do FTP com o pacote `age` do Debian**: de 208 MB para 218 MB. As imagens do painel e do nginx não mudam e nada novo é instalado no host.
@@ -129,7 +131,7 @@ A cópia de segurança passa a sair cifrada: quem pegar o arquivo não lê nada 
 - As cópias feitas antes desta versão ficam como estão em `BACKUP_DIR`, sem cifra. Faça uma cópia nova e apague as antigas.
 - Rotina que procura as cópias por `*.tar.gz` passa a procurar por `*.tar.gz.age`; o padrão `*.tar.gz*` da documentação pega os dois.
 
-## [0.24.2] - 2026-10-09
+## [0.28.2] - 2026-10-09
 
 Revisão de usabilidade do painel: o topo deixa de repetir o nome da aba, todo cartão da Visão geral leva ao detalhe, e as telas ficam confortáveis no celular.
 
@@ -150,7 +152,7 @@ Revisão de usabilidade do painel: o topo deixa de repetir o nome da aba, todo c
 - **Cores dos botões e larguras** passam a variáveis da folha de estilo, sem valor solto repetido.
 - **Fotos da aplicação refeitas** nesta versão, com o topo e a Visão geral novos.
 
-## [0.24.1] - 2026-10-07
+## [0.28.1] - 2026-10-07
 
 Duas correções de leitura nas telas de usuário do painel, e a documentação revisada de ponta a ponta: fotos refeitas, guia da aplicação com as telas novas e diagramas redesenhados.
 
@@ -161,11 +163,11 @@ Duas correções de leitura nas telas de usuário do painel, e a documentação 
 
 ### Alterado
 
-- **Fotos da aplicação refeitas** nesta versão: 38 no guia da aplicação e 7 no README, com a coluna TLS, a etiqueta `inicial` e as telas das versões `0.21.0` a `0.24.0`.
+- **Fotos da aplicação refeitas** nesta versão: 38 no guia da aplicação e 7 no README, com a coluna TLS, a etiqueta `inicial` e as telas das versões `0.25.0` a `0.28.0`.
 - **Guia da aplicação** com as telas que faltavam: Editar, Limites, Bloqueios, Renomear e Apagar arquivo, usuário novo já dispensado do TLS, cartão TLS e remoção do usuário inicial com a pasta.
 - **Diagramas redesenhados** para caber na tela sem linha cruzada: o fluxograma do painel foi dividido em dois, a entrada e os pedidos de uma sessão aberta, e o mapa da arquitetura deixou o `.env`, os segredos e o registro para o modelo da subida. As sequências escritas abaixo de cada um acompanham os números novos.
 
-## [0.24.0] - 2026-10-07
+## [0.28.0] - 2026-10-07
 
 O equipamento sem suporte a TLS passa a ser liberado pelo painel, usuário por usuário, ao criar ou ao editar, sem mexer no `.env`. Enquanto ninguém é dispensado, nada muda: a sessão sem TLS é recusada antes de a senha ser enviada.
 
@@ -191,7 +193,7 @@ O equipamento sem suporte a TLS passa a ser liberado pelo painel, usuário por u
 
 Instalação anterior a esta versão traz `FTP_TLS_EXCECOES=nao` gravado no `.env`, e o `./deploy.sh` respeita o que está lá: a opção continua fora do painel. Para tê-la, troque para `FTP_TLS_EXCECOES=sim` e rode `./deploy.sh`. Quem já usava `sim` não precisa fazer nada: os usuários dispensados continuam dispensados.
 
-## [0.23.0] - 2026-10-07
+## [0.27.0] - 2026-10-07
 
 O usuário inicial do FTP passa a ser removido pelo painel, como os outros, com ou sem a pasta. Ele é criado uma vez, na instalação, e não volta sozinho.
 
@@ -211,7 +213,7 @@ O usuário inicial do FTP passa a ser removido pelo painel, como os outros, com 
 
 Nada a fazer. Na primeira subida depois da atualização, o usuário inicial que já existe recebe a marca e continua como está.
 
-## [0.22.2] - 2026-10-07
+## [0.26.2] - 2026-10-07
 
 O padrão das três pastas da stack deixa de ser a pasta do computador onde ela é desenvolvida e passa a ser `/srv/allsafe-ftp-stack`. Instalação que já existe não muda: o `.env` dela continua valendo.
 
@@ -230,7 +232,7 @@ O padrão das três pastas da stack deixa de ser a pasta do computador onde ela 
 
 Nada a fazer. Instalação nova feita a partir desta versão usa `/srv/allsafe-ftp-stack`, salvo se o `.env` disser outro lugar.
 
-## [0.22.1] - 2026-10-07
+## [0.26.1] - 2026-10-07
 
 A frente web ficou mais rápida, com medida de antes e depois na instância de teste: o painel passa a abrir em HTTP/2, o estilo vai comprimido e a conexão do navegador é mantida entre um clique e outro. Nenhuma tela, variável ou comando mudou.
 
@@ -254,7 +256,7 @@ A frente web ficou mais rápida, com medida de antes e depois na instância de t
 
 Rode `./deploy.sh`: ele refaz a imagem do nginx, com a cópia comprimida do estilo, e sobe a configuração nova. Nada muda no `.env`, nos segredos nem nos dados.
 
-## [0.22.0] - 2026-10-07
+## [0.26.0] - 2026-10-07
 
 O FTP passa a bloquear quem erra a senha vezes demais: o endereço que erra a senha de um usuário cinco vezes em 15 minutos fica bloqueado para aquele usuário pelo mesmo tempo. O administrador ajusta o limite e o tempo de cada usuário no painel, vê quem está bloqueado e desbloqueia. O registro do container passa a trazer cada entrada e cada transferência do FTP.
 
@@ -294,7 +296,7 @@ O FTP passa a bloquear quem erra a senha vezes demais: o endereço que erra a se
 
 Rode `./deploy.sh`. O bloqueio já sobe ligado, com 5 senhas erradas e 15 minutos. Para mudar o padrão, defina `FTP_BLOQUEIO_TENTATIVAS` e `FTP_BLOQUEIO_MINUTOS` no `.env`; para desligar, `FTP_BLOQUEIO_TENTATIVAS=0`. Equipamento que hoje tenta entrar com senha errada gravada passa a ser bloqueado: confira o registro (`docker compose logs ftp | grep 'vigia: entrada recusada'`) depois da subida.
 
-## [0.21.0] - 2026-10-07
+## [0.25.0] - 2026-10-07
 
 Cada usuário do FTP passa a ter limites próprios, gravados pelo administrador no painel: quantas sessões abre, a que velocidade baixa e envia, em que horário entra e quantos arquivos baixa por vez pelo painel. Vale para a conta de um equipamento e para a de uma pessoa.
 
@@ -320,7 +322,7 @@ Cada usuário do FTP passa a ter limites próprios, gravados pelo administrador 
 - **Taxa de envio e arquivo pequeno.** Com taxa de envio, o Pure-FTPd segura cada arquivo enviado por pelo menos 256 ÷ taxa segundos, seja qual for o tamanho: a 50 KB/s, cerca de 5 segundos por arquivo. Para equipamento que envia muitos arquivos pequenos, use taxa alta ou deixe o campo em branco.
 - **Fuso do horário.** O horário é conferido no relógio do servidor FTP, no fuso da variável `TZ`.
 
-## [0.20.0] - 2026-10-06
+## [0.24.0] - 2026-10-06
 
 O painel passa a renomear e apagar arquivo e pasta, e a remover o usuário do FTP junto com a pasta dele. O que antes pedia um cliente de FTP ou o terminal do servidor agora é feito pelo navegador.
 
@@ -347,7 +349,7 @@ O painel passa a renomear e apagar arquivo e pasta, e a remover o usuário do FT
 - O caminho de renomear e de apagar passa pelas mesmas conferências da leitura: `..`, caminho absoluto e byte nulo recebem `400`, e caminho por dentro de link simbólico, `403`. A ação é feita em relação à pasta já aberta, e o apagamento não segue link.
 - A senha atual errada em um apagamento conta para o bloqueio do endereço, como a da entrada: cinco erros em 15 minutos.
 
-## [0.19.0] - 2026-10-06
+## [0.23.0] - 2026-10-06
 
 O painel passa a editar o usuário do FTP: troca a pasta de quem já existe e troca a senha e a pasta do usuário inicial, que antes só mudava pelo arquivo do segredo.
 
@@ -369,13 +371,13 @@ O painel passa a editar o usuário do FTP: troca a pasta de quem já existe e tr
 - **Sessão do usuário do FTP no painel.** A troca de pasta encerra as sessões dele, como a troca de senha já fazia.
 - **Ao atualizar:** nada muda no `.env`, nos segredos nem nos dados; a senha de cada usuário continua a mesma. São recriados os containers do FTP e do painel. O usuário inicial continua na pasta `DATA_DIR/dados/<FTP_USER>` e com a senha do arquivo do segredo.
 
-## [0.18.9] - 2026-10-06
+## [0.22.0] - 2026-10-06
 
 O projeto ganha a política de segurança, sem endereço fixo: quem acha uma falha é mandado para o contato que cada instalação publica, definido por quem a opera em `SEGURANCA_CONTATO_EMAIL`, no `.env`.
 
 ### Adicionado
 
-- **[`SECURITY.md`](SECURITY.md).** Diz para quem avisar de uma falha, o que mandar, o que não mandar e quais versões recebem correção. O contato não fica escrito no arquivo: é o que a instalação publica em `/.well-known/security.txt`, com a variável `SEGURANCA_CONTATO_EMAIL`, que existe desde a `0.18.0`.
+- **[`SECURITY.md`](SECURITY.md).** Diz para quem avisar de uma falha, o que mandar, o que não mandar e quais versões recebem correção. O contato não fica escrito no arquivo: é o que a instalação publica em `/.well-known/security.txt`, com a variável `SEGURANCA_CONTATO_EMAIL`, que existe desde a `0.19.0`.
 - **Linha do contato no resumo do `deploy.sh`.** O resumo passa a terminar com `Contato de segurança: <e-mail>, publicado em /.well-known/security.txt do painel.` ou, com a variável vazia, `Contato de segurança: não publicado.`, com o que preencher. A instalação não é bloqueada.
 - **Conferência no `scripts/validate.sh`.** O `SECURITY.md` tem de existir, citar a variável e não trazer endereço de e-mail fixo; a linha nova é `política de segurança OK: SECURITY.md aponta para SEGURANCA_CONTATO_EMAIL, sem endereço fixo`.
 
@@ -385,7 +387,7 @@ O projeto ganha a política de segurança, sem endereço fixo: quem acha uma fal
 - **Caso 36 da bateria** confere também as duas linhas do resumo do `deploy.sh`, com o contato e sem ele. O número de casos não muda.
 - **Ao atualizar:** nada muda no `.env`, nos segredos, no cadastro nem nos dados; a variável continua vazia até ser preenchida. É recriado o container do painel, porque a imagem dele leva o número da versão; o do FTP continua em execução.
 
-## [0.18.8] - 2026-10-06
+## [0.21.2] - 2026-10-06
 
 A regra da marca fica com um pedido só: a stack é livre para usar e distribuir, e a logo da ALL-SAFE sai quando houver contrato ou venda para terceiros. Nenhum código da stack mudou.
 
@@ -396,11 +398,11 @@ A regra da marca fica com um pedido só: a stack é livre para usar e distribuir
 - **[`NOTICE`](NOTICE), seção Licença do [README](README.md#licenca) e [Marca do painel](doc/painel.md#marca)** com o mesmo texto.
 - **Ao atualizar:** nada muda no `.env`, nos segredos, no cadastro nem nos dados. O `NOTICE` entra nas três imagens: os três containers são recriados.
 
-## [0.18.7] - 2026-10-06
+## [0.21.1] - 2026-10-06
 
-Sem alteração. A tag `v0.18.7` foi criada por engano no commit da `0.18.6` e, como tag publicada não é apagada nem movida, a numeração seguiu para a `0.18.8`. Não tem Release.
+Sem alteração. A tag `v0.21.1` foi criada por engano no commit da `0.21.0` e, como tag publicada não é apagada nem movida, a numeração seguiu para a `0.21.2`. Não tem Release.
 
-## [0.18.6] - 2026-10-06
+## [0.21.0] - 2026-10-06
 
 Os créditos do README passam a citar o nginx e o Python, que a stack usa desde as versões `0.5.0` e `0.3.0`. Nenhum código da stack mudou.
 
@@ -410,13 +412,13 @@ Os créditos do README passam a citar o nginx e o Python, que a stack usa desde 
 
 ### Corrigido
 
-- **Frase "Ao atualizar" das notas `0.18.3` e `0.18.5`.** As duas diziam que os três containers eram recriados. Medido na atualização da `0.18.2` para a `0.18.5`: o do FTP continuou em execução, porque nada do que entra na imagem dele mudou nessas versões.
+- **Frase "Ao atualizar" das notas `0.20.0` e `0.20.2`.** As duas diziam que os três containers eram recriados. Medido na atualização da `0.19.2` para a `0.20.2`: o do FTP continuou em execução, porque nada do que entra na imagem dele mudou nessas versões.
 
 ### Alterado
 
 - **Ao atualizar:** nada muda no `.env`, nos segredos, no cadastro nem nos dados. É recriado o container do painel, porque a imagem dele leva o número da versão; o do FTP continua em execução.
 
-## [0.18.5] - 2026-10-05
+## [0.20.2] - 2026-10-05
 
 O painel passa a responder ao método `HEAD`, que a RFC 9110 pede de todo servidor HTTP.
 
@@ -433,7 +435,7 @@ O painel passa a responder ao método `HEAD`, que a RFC 9110 pede de todo servid
 
 - **Ao atualizar:** nada muda no `.env`, nos segredos, no cadastro nem nos dados. As imagens são reconstruídas e só é recriado o container cuja imagem mudou: o do FTP continua em execução.
 
-## [0.18.4] - 2026-10-05
+## [0.20.1] - 2026-10-05
 
 A documentação ganha as fotos de todas as telas do painel, a tabela de conformidade com as RFCs e a medida do peso de cada serviço. Nenhum código da stack mudou.
 
@@ -448,7 +450,7 @@ A documentação ganha as fotos de todas as telas do painel, a tabela de conform
 - **Fotos refeitas na versão atual:** as 12 capturas que já existiam foram refeitas com a marca, os administradores e as colunas novas da aba Usuários.
 - **Ao atualizar:** nada muda no `.env`, nos segredos, no cadastro nem nos dados.
 
-## [0.18.3] - 2026-10-05
+## [0.20.0] - 2026-10-05
 
 A lista de usuários do painel deixa de cortar os botões de ação em telas de computador.
 
@@ -460,7 +462,7 @@ A lista de usuários do painel deixa de cortar os botões de ação em telas de 
 
 - **Ao atualizar:** nada muda no `.env`, nos segredos, no cadastro nem nos dados. As imagens são reconstruídas e só é recriado o container cuja imagem mudou: o do FTP continua em execução.
 
-## [0.18.2] - 2026-10-05
+## [0.19.2] - 2026-10-05
 
 O projeto passa a ter licença: o código é livre pela Apache 2.0, e o nome, a logo e o ícone da ALL-SAFE têm regra própria.
 
@@ -479,7 +481,7 @@ O projeto passa a ter licença: o código é livre pela Apache 2.0, e o nome, a 
 
 - **Ao atualizar:** nada muda no `.env`, nos segredos, no cadastro nem nos dados. As imagens são reconstruídas e os três containers, recriados.
 
-## [0.18.1] - 2026-10-05
+## [0.19.1] - 2026-10-05
 
 A bateria de segurança passa a responder a quatro perguntas a cada versão: abre alguma coisa sem senha, abre com senha aleatória, dá para derrubar por exaustão e dá para ler o cadastro das senhas sem passar pela entrada. Ela achou dois defeitos, corrigidos nesta versão.
 
@@ -501,7 +503,7 @@ A bateria de segurança passa a responder a quatro perguntas a cada versão: abr
 - **Ao atualizar:** se a senha do usuário inicial foi trocada só com `./manage-user.sh passwd`, sem atualizar `.secrets/ftp-usuario-inicial-senha.txt`, a senha do arquivo volta a valer na primeira subida. Grave no arquivo a senha em uso antes de atualizar.
 - O serviço `painel` recebe `FTP_MAX_CLIENTS`, para gravar as senhas com o mesmo custo do serviço `ftp`.
 
-## [0.18.0] - 2026-10-04
+## [0.19.0] - 2026-10-04
 
 O painel passa a publicar o contato de segurança da instalação, em `/.well-known/security.txt`, e o `robots.txt`. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -519,7 +521,7 @@ O painel passa a publicar o contato de segurança da instalação, em `/.well-kn
 
 - O `.env.example` passa a ter 45 variáveis, com a seção Contato de segurança.
 
-## [0.17.0] - 2026-10-04
+## [0.18.0] - 2026-10-04
 
 O painel passa a mostrar a logo e o ícone da ALL-SAFE e, no rodapé de todas as telas, a autoria: desenvolvido pela allsafe.inf.br. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -543,7 +545,7 @@ O painel passa a mostrar a logo e o ícone da ALL-SAFE e, no rodapé de todas as
 
 - O ícone em SVG que o painel gerava em `/favicon.svg`: o endereço deixa de existir.
 
-## [0.16.0] - 2026-10-04
+## [0.17.0] - 2026-10-04
 
 O administrador passa a escolher, no painel, quais usuários entram no FTP sem TLS: serve para o equipamento antigo que não fala TLS, sem abrir mão do TLS dos demais. A opção nasce desligada. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -571,7 +573,7 @@ O administrador passa a escolher, no painel, quais usuários entram no FTP sem T
 
 Rode `./deploy.sh`. A variável nova é opcional: sem ela no `.env`, vale `nao`, e o TLS continua obrigatório para todos, como antes. Para usar, defina `FTP_TLS_EXCECOES=sim`, com `FTP_TLS_MODE=2` e `REDE_PERMITIR_IP_PUBLICO=nao`, rode `./deploy.sh` e dispense os usuários no painel. Não há mudança nos dados.
 
-## [0.15.0] - 2026-10-04
+## [0.16.0] - 2026-10-04
 
 O dono dos arquivos passa a baixar os próprios backups pelo navegador: cada usuário do FTP entra no painel com o nome e a senha do FTP e vê só a pasta dele. A administração continua só com os administradores. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -596,7 +598,7 @@ O dono dos arquivos passa a baixar os próprios backups pelo navegador: cada usu
 
 Rode `./deploy.sh`. A variável nova é opcional: sem ela no `.env`, vale `sim`, e os usuários do FTP que já existem passam a entrar no painel com a senha que têm. Para manter o painel só com administradores, acrescente `PAINEL_ACESSO_USUARIOS_FTP=nao` ao `.env` antes de rodar. Não há mudança nos dados.
 
-## [0.14.0] - 2026-10-04
+## [0.15.0] - 2026-10-04
 
 Quem administra passa a escolher a pasta de cada usuário do FTP e a criar pastas pelo navegador. Sem escolha, nada muda: a pasta continua sendo a do nome do usuário. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -619,7 +621,7 @@ Quem administra passa a escolher a pasta de cada usuário do FTP e a criar pasta
 
 Rode `./deploy.sh`. Não há variável nova nem mudança nos dados: os usuários que já existem continuam na pasta deles.
 
-## [0.13.0] - 2026-10-04
+## [0.14.0] - 2026-10-04
 
 Os backups recebidos passam a ser consultados e baixados pelo navegador, na aba nova Arquivos do painel. O painel só lê: enviar, renomear e apagar continuam sendo feitos por FTP. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -641,7 +643,7 @@ Os backups recebidos passam a ser consultados e baixados pelo navegador, na aba 
 
 Rode `./deploy.sh`. Não há variável nova nem mudança nos dados: a aba Arquivos aparece para todos os administradores.
 
-## [0.12.0] - 2026-10-04
+## [0.13.0] - 2026-10-04
 
 O painel deixa de ter uma senha só: cada administrador entra com o próprio usuário e a própria senha, e os administradores são criados, alterados e removidos pelo próprio painel. Quem atualiza continua entrando com a senha que já usava, agora com o usuário `admin`. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -668,7 +670,7 @@ O painel deixa de ter uma senha só: cada administrador entra com o próprio usu
 
 Rode `./deploy.sh`. Na primeira subida, o painel cria o administrador `admin` com a senha que já valia; para outro nome, defina `PAINEL_ADMIN_USER` no `.env` **antes** de atualizar, ou troque o nome depois, na aba Administradores. As sessões abertas são encerradas.
 
-## [0.11.1] - 2026-10-04
+## [0.12.1] - 2026-10-04
 
 O código do painel, que era um arquivo só, passa a ser dividido em módulos, um assunto por arquivo. Nada muda para quem usa: as mesmas telas, as mesmas respostas, a mesma auditoria. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -678,7 +680,7 @@ O código do painel, que era um arquivo só, passa a ser dividido em módulos, u
 - [`Dockerfile`](Dockerfile): o alvo `painel` copia todos os módulos de `painel/` para `/opt/painel`.
 - [`scripts/validate.sh`](scripts/validate.sh): confere a sintaxe de cada módulo do painel e que todo nome usado em cada um está definido ou importado nele; a linha de resultado passa a ser `painel OK: <n> módulos Python`.
 
-## [0.11.0] - 2026-10-04
+## [0.12.0] - 2026-10-04
 
 A stack ganha uma opção para aceitar endereço público, desligada por padrão e acompanhada de alerta. Quem não ligar a opção não percebe diferença. **Por padrão, uso só em rede privada, atrás de firewall.**
 
@@ -696,7 +698,7 @@ A stack ganha uma opção para aceitar endereço público, desligada por padrão
 - A tela de entrada do painel mostra o mesmo aviso de rede das outras telas.
 - [`scripts/rede-privada.sh`](scripts/rede-privada.sh): `exigir_ip` e `exigir_rede` no lugar de `exigir_ip_privado`, mais `conferir_opcao_ip_publico` e `aviso_ip_publico`, usadas pelo `deploy.sh` e pelos três entrypoints.
 
-## [0.10.1] - 2026-10-04
+## [0.11.1] - 2026-10-04
 
 O [`.env.example`](.env.example) passa a explicar cada variável. Nenhum valor, nome ou comportamento muda. **Uso só em rede privada, atrás de firewall.**
 
@@ -710,7 +712,7 @@ O [`.env.example`](.env.example) passa a explicar cada variável. Nenhum valor, 
 - [Configuração](doc/configuracao.md) citava `FTP_PASSWORD_FILE`, que deixou de existir na `0.2.0`, entre os padrões do Compose; o texto agora traz as variáveis que de fato não têm padrão (`DATA_DIR` e `FTP_PASSIVE_IP`).
 - [Scripts](doc/scripts.md) lista todas as pastas de script que o `validate.sh` confere.
 
-## [0.10.0] - 2026-10-04
+## [0.11.0] - 2026-10-04
 
 Os arquivos de `.secrets/` passam a dizer no nome o que guardam, e a pasta ganha um `LEIAME.txt` que explica cada um. As senhas não mudam. **Uso só em rede privada, atrás de firewall.**
 
@@ -736,7 +738,7 @@ Os arquivos de `.secrets/` passam a dizer no nome o que guardam, e a pasta ganha
 
 Rode `./deploy.sh` uma vez: ele dá o nome novo aos arquivos e recria os containers do FTP e do painel, porque o nome do segredo dentro deles mudou. Dados, usuários e senhas ficam como estavam: [Segredos](doc/segredos.md#nomes-antigos).
 
-## [0.9.0] - 2026-10-04
+## [0.10.0] - 2026-10-04
 
 A variável do IP anunciado no modo passivo muda de nome: `FTP_PUBLIC_IP` vira `FTP_PASSIVE_IP`. O valor e o comportamento são os mesmos; o nome antigo sugeria IP de internet, e a stack só aceita IP privado. **Uso só em rede privada, atrás de firewall.**
 
@@ -753,7 +755,7 @@ A variável do IP anunciado no modo passivo muda de nome: `FTP_PUBLIC_IP` vira `
 
 Rode `./deploy.sh` uma vez. Até ele rodar, os comandos que chamam o Compose param com `defina FTP_PASSIVE_IP no .env`.
 
-## [0.8.2] - 2026-10-04
+## [0.9.2] - 2026-10-04
 
 As imagens do FTP e do painel deixam de levar dois pacotes que nada na stack usava. Nada muda para quem usa. **Uso só em rede privada, atrás de firewall.**
 
@@ -765,13 +767,13 @@ As imagens do FTP e do painel deixam de levar dois pacotes que nada na stack usa
 
 Medido com `docker image inspect`, as duas versões construídas no mesmo host e no mesmo dia.
 
-| Imagem | Antes (`0.8.1`) | Agora (`0.8.2`) | Pacotes |
+| Imagem | Antes (`0.9.1`) | Agora (`0.9.2`) | Pacotes |
 |---|---|---|---|
 | FTP | 211,3 MB | 207,5 MB | 104 ➜ 100 |
 | Painel | 261,1 MB | 257,8 MB | 117 ➜ 114 |
 | nginx | 145,2 MB | 145,2 MB | sem mudança |
 
-## [0.8.1] - 2026-10-04
+## [0.9.1] - 2026-10-04
 
 As pastas do projeto passam a seguir a divisão por serviço. Nada muda para quem usa: os comandos do dia a dia, o `.env`, os segredos e os dados continuam iguais. **Uso só em rede privada, atrás de firewall.**
 
@@ -796,11 +798,11 @@ As pastas do projeto passam a seguir a divisão por serviço. Nada muda para que
 | `painel/estilo.css` | `web/estilo.css` |
 | `scripts/testar.sh` | `tests/testar.sh`, `tests/comum.sh` e `tests/etapas/` |
 
-## [0.8.0] - 2026-10-04
+## [0.9.0] - 2026-10-04
 
 O painel passa a aceitar a entrada pelo navegador e a documentação ganha as fotos de todas as telas. **Uso só em rede privada, atrás de firewall.**
 
-Esta versão foi publicada primeiro como `1.0.0` e renumerada para `0.8.0` no mesmo dia: a `1.0.0` fica reservada para a primeira versão pronta para produção. A tag e a Release `v1.0.0` deixaram de existir; o conteúdo é o mesmo.
+Esta versão foi publicada primeiro como `1.0.0` e renumerada no mesmo dia: a `1.0.0` fica reservada para a primeira versão pronta para produção. A tag e a Release `v1.0.0` deixaram de existir; o conteúdo é o mesmo. O número atual, `0.9.0`, vem da [renumeração de 2026-10-10](#renumeracao).
 
 ### Adicionado
 
@@ -817,7 +819,7 @@ Esta versão foi publicada primeiro como `1.0.0` e renumerada para `0.8.0` no me
 
 - **O painel recusava todo envio feito por navegador, inclusive a entrada**, com `403` e a mensagem `O envio não partiu deste painel.` Com `Referrer-Policy: no-referrer`, o navegador manda `Origin: null` em todo formulário, e o painel exige `Origin` igual ao próprio endereço. O defeito existia desde a `0.3.0`, quando o painel foi criado, e não aparecia nos testes porque a bateria envia os formulários com `curl`, informando o `Origin` certo. A correção foi conferida com o Google Chrome: entrada, cadastro, troca de senha e remoção de usuário.
 
-## [0.7.0] - 2026-10-04
+## [0.8.0] - 2026-10-04
 
 Backup e restauração em um comando e healthcheck do FTP que confere se o servidor atende. **Uso só em rede privada, atrás de firewall.**
 
@@ -839,7 +841,7 @@ Backup e restauração em um comando e healthcheck do FTP que confere se o servi
 
 - `scripts/testar.sh` acusava segredo nos resultados (saída `3`) quando a bateria parava antes de a instância de teste ter senhas.
 
-## [0.6.0] - 2026-10-04
+## [0.7.0] - 2026-10-04
 
 Testes automatizados: um comando roda a bateria funcional, de segurança e de rede. **Uso só em rede privada, atrás de firewall.**
 
@@ -854,7 +856,7 @@ Testes automatizados: um comando roda a bateria funcional, de segurança e de re
 
 - `validate.sh --runtime` confere os três serviços (`ftp`, `painel` e `nginx`) em `running` e `healthy` e lê o usuário inicial de `FTP_USER` no `.env`; antes conferia só o `ftp` e lia a variável do shell.
 
-## [0.5.4] - 2026-10-04
+## [0.6.1] - 2026-10-04
 
 Mapa da arquitetura aberto no README. Nenhuma mudança no funcionamento da stack.
 
@@ -862,7 +864,7 @@ Mapa da arquitetura aberto no README. Nenhuma mudança no funcionamento da stack
 
 - **Dois diagramas abertos no README:** o da abertura e o mapa da arquitetura, que saiu do menu recolhido e aparece direto na seção Arquitetura, com a sequência escrita. Os fluxogramas completos do FTP e do painel e as tabelas continuam em menus recolhidos.
 
-## [0.5.3] - 2026-10-04
+## [0.6.0] - 2026-10-04
 
 Documentação mais limpa: menos emojis e sem avisos de coisa que falta. Nenhuma mudança no funcionamento da stack.
 
@@ -1048,3 +1050,31 @@ Estado da stack na adoção do versionamento: servidor FTP, perfis e operação 
 - Perfis `small`, `medium` e `large`.
 - Scripts `deploy.sh`, `manage-user.sh` e `scripts/validate.sh`.
 - Sub-rede Docker fixa e configurável (`FTP_SUBNET`).
+
+<a name="renumeracao"></a>
+
+## 🔢 Renumeração de 2026-10-10
+
+Até 2026-10-10 algumas versões tinham mais de duas correções seguidas (a `0.18.x` da época chegou a nove). A numeração foi refeita em sequência, com no máximo duas correções por versão: a terceira correção passou a abrir a versão seguinte, e as que vinham depois avançaram. Tags e Releases levaram o número novo, no mesmo conteúdo; os números de antes deixaram de existir. Das 51 versões publicadas até então, 42 mudaram; as nove primeiras, até a `0.5.2`, ficaram como estavam.
+
+<details>
+<summary>Tabela de correspondência: número de antes e número de agora</summary>
+
+| Antes | Agora | | Antes | Agora | | Antes | Agora |
+|---|---|---|---|---|---|---|---|
+| 0.5.3 | 0.6.0 | | 0.14.0 | 0.15.0 | | 0.19.0 | 0.23.0 |
+| 0.5.4 | 0.6.1 | | 0.15.0 | 0.16.0 | | 0.20.0 | 0.24.0 |
+| 0.6.0 | 0.7.0 | | 0.16.0 | 0.17.0 | | 0.21.0 | 0.25.0 |
+| 0.7.0 | 0.8.0 | | 0.17.0 | 0.18.0 | | 0.22.0 | 0.26.0 |
+| 0.8.0 | 0.9.0 | | 0.18.0 | 0.19.0 | | 0.22.1 | 0.26.1 |
+| 0.8.1 | 0.9.1 | | 0.18.1 | 0.19.1 | | 0.22.2 | 0.26.2 |
+| 0.8.2 | 0.9.2 | | 0.18.2 | 0.19.2 | | 0.23.0 | 0.27.0 |
+| 0.9.0 | 0.10.0 | | 0.18.3 | 0.20.0 | | 0.24.0 | 0.28.0 |
+| 0.10.0 | 0.11.0 | | 0.18.4 | 0.20.1 | | 0.24.1 | 0.28.1 |
+| 0.10.1 | 0.11.1 | | 0.18.5 | 0.20.2 | | 0.24.2 | 0.28.2 |
+| 0.11.0 | 0.12.0 | | 0.18.6 | 0.21.0 | | 0.25.0 | 0.29.0 |
+| 0.11.1 | 0.12.1 | | 0.18.7 | 0.21.1 | | 0.25.1 | 0.29.1 |
+| 0.12.0 | 0.13.0 | | 0.18.8 | 0.21.2 | | 0.25.2 | 0.29.2 |
+| 0.13.0 | 0.14.0 | | 0.18.9 | 0.22.0 | | 0.26.0 | 0.30.0 |
+
+</details>
